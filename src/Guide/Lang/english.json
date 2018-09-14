@@ -1,0 +1,18 @@
+{
+    "WELCOME_EMBED_TITLE": [
+        "Welcome!",
+        "Hello there!",
+        "Heya!",
+        "What's up?!",
+        "There you are!",
+        "Look who's here!"
+    ],
+    "WELCOME_EMBED_WHILE_YOU_WAIT": [
+        "It is important that you read the <#458957540215095296> to see how to get access to other channels.",
+        "You need to read through <#458957540215095296> to find out how to access other channels.",
+        "<#458957540215095296> is where you'll find all you need to join other channels."
+    ],
+    "FUN_SERVER_FACT" : [
+        "Halloween is coming up. Throughout the whole month of October, we will be participating in a Hacktoberfest event. :jack_o_lantern:"
+    ]
+}

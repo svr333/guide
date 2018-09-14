@@ -4,6 +4,7 @@ using Guide.Connection;
 using Guide.Handlers;
 using Guide.Json;
 using Guide.Logging;
+using Guide.Language;
 using Lamar;
 
 namespace Guide
@@ -39,6 +40,7 @@ namespace Guide
                 c.For<ICommandHandler>().Use<DiscordCommandHandler>();
                 c.For<ILogger>().Use<ConsoleLogger>();
                 c.ForSingletonOf<IJsonStorage>().UseIfNone<JsonStorage>();
+                c.ForSingletonOf<ILanguage>().UseIfNone<JsonLanguage>();
                 c.ForSingletonOf<DiscordSocketClient>().UseIfNone(DiscordSocketClientFactory.GetDefault());
             });
         }

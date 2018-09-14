@@ -51,5 +51,11 @@ namespace Guide.Json
             }
             return File.ReadAllText(filePath);
         }
+
+        public T GetConcrete<T>(string fullFilePath)
+        {
+            var json = File.ReadAllText(fullFilePath);
+            return JsonConvert.DeserializeObject<T>(json);
+        }
     }
 }

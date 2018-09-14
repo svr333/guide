@@ -9,4 +9,9 @@
     <PackageReference Include="Lamar" Version="*"/>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="*"/>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lang\english.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
