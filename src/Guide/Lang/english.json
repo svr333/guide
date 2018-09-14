@@ -14,5 +14,10 @@
     ],
     "FUN_SERVER_FACT" : [
         "Halloween is coming up. Throughout the whole month of October, we will be participating in a Hacktoberfest event. :jack_o_lantern:"
+    ],
+    "USER_JOINED_TITLE" : [
+        "WELCOME, {0}!",
+        "{0} MADE IT!",
+        "HERE COMES {0}!"
     ]
 }
