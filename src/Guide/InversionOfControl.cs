@@ -2,6 +2,7 @@ using Discord.WebSocket;
 using Guide.Configuration;
 using Guide.Connection;
 using Guide.Handlers;
+using Guide.Json;
 using Guide.Logging;
 using Lamar;
 
@@ -37,10 +38,8 @@ namespace Guide
                 c.For<IConfiguration>().Use<ConfigManager>();
                 c.For<ICommandHandler>().Use<DiscordCommandHandler>();
                 c.For<ILogger>().Use<ConsoleLogger>();
+                c.ForSingletonOf<IJsonStorage>().UseIfNone<JsonStorage>();
                 c.ForSingletonOf<DiscordSocketClient>().UseIfNone(DiscordSocketClientFactory.GetDefault());
-                // Add the types you need with:
-                // c.For<YourInterface>().Use<YourConcretion>();
-                // c.ForSingletonOf<YourSingletonType>().UseIfNone<YourSingletonType>();
             });
         }
     }
