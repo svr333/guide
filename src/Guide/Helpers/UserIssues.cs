@@ -1,15 +1,41 @@
+using Guide.Json;
+
 namespace Guide.Helpers
 {
     public class UserIssues
     {
-        public UserIssues()
+        private readonly IJsonStorage jsonStorage;
+
+        public UserIssues(IJsonStorage jsonStorage)
         {
-            // TODO:
-            // i can't get groups for now...
-            // have to add groups to get a list of problems
-            // problems should be stored in separate .json files
-            // much like user accounts that are also not 
-            // implemented...
+            this.jsonStorage = jsonStorage;
+        }
+
+        public void AddIssue(UserIssue issue)
+        {
+            jsonStorage.Store(issue, GetIssueFileByMessageId(issue.MessageId), false);
+        }
+
+        public UserIssue GetByMessageId(ulong id)
+        {
+            try
+            {
+                return jsonStorage.Get<UserIssue>(GetIssueFileByMessageId(id));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public void DeleteByMessageId(ulong id)
+        {
+            jsonStorage.DeleteFile($"data/{GetIssueFileByMessageId(id)}");
+        }
+
+        private string GetIssueFileByMessageId(ulong id)
+        {
+            return $"{Constants.UserIssueGroup}{id}.json";
         }
     }
 }

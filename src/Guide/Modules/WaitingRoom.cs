@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
@@ -22,6 +23,8 @@ namespace Guide.Modules
         public async Task AcceptRules()
         {
             var user = Context.User as SocketGuildUser;
+            if(user.Roles.Any(r => r.Id == Constants.MemberRoleId)) return;
+
             var memberRole = Context.Guild.GetRole(Constants.MemberRoleId);
 
             await user.AddRoleAsync(memberRole);
@@ -33,7 +36,7 @@ namespace Guide.Modules
 
             var general = Context.Guild.GetTextChannel(Constants.GeneralId);
 
-            await general.SendMessageAsync(user.Mention, embed: embed);
+            await general.SendMessageAsync("", embed: embed);
         }
     }
 }

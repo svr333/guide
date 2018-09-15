@@ -1,13 +1,18 @@
 using System;
 using System.IO;
+using Guide.Logging;
 using Newtonsoft.Json;
 
 namespace Guide.Json
 {
     public class JsonStorage : IJsonStorage
     {
-        public JsonStorage()
+        private readonly ILogger logger;
+
+        public JsonStorage(ILogger logger)
         {
+            this.logger = logger;
+
             ValidateResources();
         }
 
@@ -20,6 +25,7 @@ namespace Guide.Json
         {
             string json = JsonConvert.SerializeObject(obj, formatting);
             string filePath = Path.Combine(Constants.JsonDirectory, file);
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
             File.WriteAllText(filePath, json);
         }
 
@@ -56,6 +62,18 @@ namespace Guide.Json
         {
             var json = File.ReadAllText(fullFilePath);
             return JsonConvert.DeserializeObject<T>(json);
+        }
+
+        public void DeleteFile(string file)
+        {
+            try
+            {
+                File.Delete(file);
+            }
+            catch
+            {
+                logger.Log($"Could not delete file. File does not exist: '{file}'.");
+            }
         }
     }
 }

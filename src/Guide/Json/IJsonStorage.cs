@@ -9,5 +9,6 @@ namespace Guide.Json
         T Get<T>(string file);
         T GetConcrete<T>(string fullFilePath);
         bool JsonExists(string file);
+        void DeleteFile(string file);
     }
 }
