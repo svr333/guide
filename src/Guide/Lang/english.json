@@ -13,11 +13,13 @@
         "<#458957540215095296> is where you'll find all you need to join other channels."
     ],
     "FUN_SERVER_FACT" : [
-        "Halloween is coming up. Throughout the whole month of October, we will be participating in a Hacktoberfest event. :jack_o_lantern:"
+        "While people on this server try to help you, you have to help us help you... If you know what I mean."
     ],
     "USER_JOINED_TITLE" : [
         "WELCOME, {0}!",
         "{0} MADE IT!",
         "HERE COMES {0}!"
-    ]
+    ],
+    "HELPER_ADDED" : [ ":bell: Thank you for helping this community. Please have this role enabled only when you're actively ready to help." ],
+    "HELPER_REMOVED" : [ ":no_bell: Thank you for helping. See you soon!" ]
 }
