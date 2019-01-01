@@ -3,8 +3,7 @@ namespace Guide.Services
     public class ServicesBootstrapper
     {
         public ServicesBootstrapper(
-            WelcomeMessageService welcomeMessageService,
-            UserIssuesService userIssuesService
+            WelcomeMessageService welcomeMessageService
             )
         {
             // initialize a service if needed...
