@@ -5,12 +5,6 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="App.config.template" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="App.config.template" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="CommonIssues.JsonParser" Version="1.0.8" />
     <PackageReference Include="Discord.Net" Version="2.0.0-beta" />
     <PackageReference Include="Lamar" Version="*" />
