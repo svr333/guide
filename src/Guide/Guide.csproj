@@ -1,17 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Discord.Net" Version="2.0.0-beta"/>
-    <PackageReference Include="Lamar" Version="*"/>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="*"/>
+    <None Remove="App.config.template" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.config.template" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommonIssues.JsonParser" Version="1.0.8" />
+    <PackageReference Include="Discord.Net" Version="2.0.0-beta" />
+    <PackageReference Include="Lamar" Version="*" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="*" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lang\english.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 </Project>
