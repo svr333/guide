@@ -25,6 +25,12 @@ namespace Guide.Modules
             var user = Context.User as SocketGuildUser;
             if(user.Roles.Any(r => r.Id == Constants.MemberRoleId)) return;
 
+            if(!IsAsciiPrintable(user.Username[0]))
+            {
+                await WarnNonAsciiName();
+                return;
+            }
+
             var memberRole = Context.Guild.GetRole(Constants.MemberRoleId);
 
             await user.AddRoleAsync(memberRole);
@@ -38,5 +44,15 @@ namespace Guide.Modules
 
             await general.SendMessageAsync("", embed: embed);
         }
+
+        private static boolean IsAsciiPrintable(char ch) {
+            return ch >= 32 && ch < 127;
+        }
+
+        public async Task WarnNonAsciiName()
+        {
+            ReplyAsync("Sorry, before I let you in, you need to make sure your username/nickname is easy to mention on a US-EN keyboard.");
+        }
     }
 }
+
