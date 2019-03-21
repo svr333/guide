@@ -44,7 +44,9 @@ namespace Guide.Modules
                 {
                     sb.Append($"Nearest Result: [{partialSearch[0].Name}]({partialSearch[0].Url})" +
                         $"\n{partialSearch[0].Description}");
+                    embed.WithDescription(sb.ToString());
                     embed.WithImageUrl(partialSearch[0].Img);
+                    await ReplyAsync("", false, embed.Build());
                 }
                 else if (partialSearch.Count > 1)
                 {
@@ -54,6 +56,8 @@ namespace Guide.Modules
                     partialSearch.RemoveAt(0);
                     sb.Append("\n\nOther Possible Results\n");
                     partialSearch.ForEach(x => sb.Append($"URL: [{x.Name}]({x.Url})\n"));
+                    embed.WithDescription(sb.ToString());
+                    await ReplyAsync("", false, embed.Build());
                 }
                 else
                 {
