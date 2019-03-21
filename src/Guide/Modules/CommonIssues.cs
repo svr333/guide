@@ -62,6 +62,14 @@ namespace Guide.Modules
                 else
                 {
                     _logger.Log("Command execution failed. Reason: No result found in CommonIssue..");
+                    var issuesCreationUrl = "https://github.com/discord-bot-tutorial/common-issues/issues";
+                    sb.Append("**No results found for your query.**\n" +
+                                $"If you wish, you can [Create an Issue]({issuesCreationUrl})\n" +
+                                $"*Once your issue is created, we will do our best to create a guide for that issue. " +
+                                $"If your issue is found not to require a guide, we will let you know why and instead provide help via Discord.*");
+                    embed.WithImageUrl("https://raw.githubusercontent.com/discord-bot-tutorial/common-issues/master/Images/Issues.png");
+                    embed.WithDescription(sb.ToString());
+                    await ReplyAsync("", false, embed.Build());
                 }
             }
         }
