@@ -20,10 +20,12 @@ namespace Guide.Modules
 
         [Command("I accept the rules", RunMode = RunMode.Async)]
         [Alias("I accept the rules.")]
-        public async Task AcceptRules()
+        public async Task AcceptRules([Remainder]string bio = "The user didn't provide this information.")
         {
-            var user = Context.User as SocketGuildUser;
-            if(user.Roles.Any(r => r.Id == Constants.MemberRoleId)) return;
+            if (!(Context.User is SocketGuildUser user) || UserIsMember(user))
+            {
+                return;
+            }
 
             if(!IsAsciiPrintable(user.Username[0]))
             {
@@ -38,6 +40,7 @@ namespace Guide.Modules
             var embed = new EmbedBuilder()
                 .WithTitle(string.Format(lang.GetPhrase(Constants.PKUserJoinedTitle), user.Nickname ?? user.Username))
                 .WithColor(Constants.PrimaryColor)
+                .AddField("About this user", bio)
                 .Build();
 
             var general = Context.Guild.GetTextChannel(Constants.GeneralId);
@@ -45,13 +48,16 @@ namespace Guide.Modules
             await general.SendMessageAsync("", embed: embed);
         }
 
-        private static boolean IsAsciiPrintable(char ch) {
+        private static bool UserIsMember(SocketGuildUser user)
+            => user.Roles.Any(r => r.Id == Constants.MemberRoleId);
+
+        private static bool IsAsciiPrintable(char ch) {
             return ch >= 32 && ch < 127;
         }
 
-        public async Task WarnNonAsciiName()
+        private async Task WarnNonAsciiName()
         {
-            ReplyAsync("Sorry, before I let you in, you need to make sure your username/nickname is easy to mention on a US-EN keyboard.");
+            await ReplyAsync("Sorry, before I let you in, you need to make sure your username/nickname is easy to mention on a US-EN keyboard.\nIf you think this is a mistake, please contact a Staff member.");
         }
     }
 }
