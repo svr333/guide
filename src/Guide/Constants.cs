@@ -7,6 +7,7 @@ namespace Guide
         public const string ConfigKeyToken = "DiscordToken";
         public const string JsonDirectory = "data";
         public const string LanguageFile = "Lang/english.json";
+
 #if DEBUG
         public const ulong TutorialGuildId = 464334692502470666;
         public const ulong WaitingRoomId = 490426923630067746;
