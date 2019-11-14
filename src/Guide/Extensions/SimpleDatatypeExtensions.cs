@@ -1,4 +1,6 @@
-﻿namespace Guide.Extensions
+﻿using System.Collections.Generic;
+
+namespace Guide.Extensions
 {
     public static class SimpleDatatypeExtensions
     {
