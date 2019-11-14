@@ -1,4 +1,5 @@
-﻿using Discord.Commands;
+﻿using Discord;
+using Discord.Commands;
 using Discord.WebSocket;
 using System.IO;
 using System.Threading.Tasks;
@@ -6,6 +7,7 @@ using System.Linq;
 
 namespace Guide.Modules
 {
+    [RequireUserPermission(ChannelPermission.ManageRoles)]
     public class Admin : ModuleBase<SocketCommandContext>
     {
         [Command("scramble")]
