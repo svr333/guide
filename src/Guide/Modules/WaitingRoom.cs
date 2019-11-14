@@ -27,7 +27,9 @@ namespace Guide.Modules
                 return;
             }
 
-            if(!IsAsciiPrintable(user.Username[0]))
+
+            var visibleName = user.Nickname ?? user.Username;
+            if(!IsAsciiPrintable(visibleName[0]))
             {
                 await WarnNonAsciiName();
                 return;
