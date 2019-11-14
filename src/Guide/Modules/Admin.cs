@@ -7,12 +7,15 @@ using System.Linq;
 
 namespace Guide.Modules
 {
-    [RequireUserPermission(ChannelPermission.ManageRoles)]
+    [RequireUserPermission(GuildPermission.Administrator)]
+    [RequireBotPermission(GuildPermission.ManageNicknames)]
     public class Admin : ModuleBase<SocketCommandContext>
     {
-        [Command("scramble")]
+        [Command("scramble")] 
         public async Task ScrambleNickname(SocketGuildUser user)
         {
+            if (user == user.Guild.Owner) return;
+
             var randomName = File.ReadAllLines(Constants.NamesFile).GetRandomElement();
 
             await user.ModifyAsync(u => u.Nickname = randomName);
