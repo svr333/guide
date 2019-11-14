@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using Guide.Extensions;
 using Guide.Language;
 using Guide.Preconditions;
 
@@ -29,7 +30,7 @@ namespace Guide.Modules
 
 
             var visibleName = user.Nickname ?? user.Username;
-            if(!IsAsciiPrintable(visibleName[0]))
+            if(!string.IsNullOrEmpty(visibleName) && !visibleName[0].IsAsciiPrintable())
             {
                 await WarnNonAsciiName();
                 return;
@@ -52,10 +53,6 @@ namespace Guide.Modules
 
         private static bool UserIsMember(SocketGuildUser user)
             => user.Roles.Any(r => r.Id == Constants.MemberRoleId);
-
-        private static bool IsAsciiPrintable(char ch) {
-            return ch >= 32 && ch < 127;
-        }
 
         private async Task WarnNonAsciiName()
         {
